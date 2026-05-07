@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GTM Acceleration Program | CULytics Solution Provider Advisory</title>
+
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --navy: #1F2D4E;
+    --gold: #C49A22;
+    --gold-light: #F0DFA0;
+    --white: #ffffff;
+    --off-white: #F7F6F3;
+    --gray-100: #F2F2F2;
+    --gray-300: #D9D9D9;
+    --gray-500: #888780;
+    --text: #1A1A1A;
+    --text-muted: #555550;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+  }
+  /* NAV */
+   .nav {
+    background: var(--navy);
+    padding: 0.85rem 2.5rem;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* NEW CLICKABLE LOGO */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 44px;
+    width: auto;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+
+  .nav-logo:hover img {
+    opacity: 0.9;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #d2d2d2;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .nav-links a.active {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+  }
+
+
+  /* HERO */
+ .hero {
+    background: var(--navy);
+    padding: 5rem 2.5rem 4rem;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .hero-eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+    font-weight: normal;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-tagline {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #bbb;
+    max-width: 580px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: #a87f18;
+  }
+
+  /* SECTION BASE */
+.section {
+    padding: 4rem 2.5rem;
+  }
+
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .section-rule {
+    width: 36px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-lead {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* =========================
+     WHY SECTION
+  ========================= */
+  .why-section {
+    background: var(--off-white);
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .why-card {
+    background: var(--white);
+    border: 0.5px solid var(--gray-300);
+    border-top: 3px solid var(--gold);
+    border-radius: 2px;
+    padding: 1.5rem;
+  }
+
+  .why-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h3 {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+
+  /* SERVICES */
+  .services-section {
+    background: var(--white);
+  }
+
+  .svc-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .svc-card {
+    border: 0.5px solid var(--gray-300);
+    border-left: 4px solid var(--gold);
+    border-radius: 2px;
+    padding: 1.5rem;
+    background: var(--white);
+  }
+
+  .svc-card h3 {
+    font-size: 17px;
+    font-weight: normal;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .svc-desc {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .svc-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .svc-meta-block {
+    background: var(--gray-100);
+    border-radius: 2px;
+    padding: 0.75rem;
+  }
+
+  .meta-label {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .svc-meta-block p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* CASE STUDIES */
+  .cases-section {
+    background: var(--off-white);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    background: var(--white);
+    border: 0.5px solid var(--gray-300);
+    border-radius: 2px;
+    padding: 1.5rem;
+  }
+
+  .case-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .case-card h3 {
+    font-size: 15px;
+    font-weight: normal;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+  }
+
+  .case-card p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    border-top: 0.5px solid var(--gray-300);
+    padding-top: 0.75rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 26px;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-lbl {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--navy);
+    padding: 4rem 2.5rem;
+    text-align: center;
+    border-top: 3px solid var(--gold);
+  }
+
+  .cta-section h2 {
+    font-size: 28px;
+    font-weight: normal;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-section p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #bbb;
+    max-width: 500px;
+    margin: 0 auto 1.75rem;
+    line-height: 1.7;
+  }
+
+  .cta-contact {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    margin-top: 1rem;
+  }
+
+  .cta-contact a {
+    color: var(--gold-light);
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #131c2f;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .footer a {
+    color: #888;
+    text-decoration: none;
+  }
+
+
+  /* RESPONSIVE */
+    @media (max-width: 700px) {
+
+    .nav {
+      padding: 1rem 1.25rem;
+    }
+
+    .nav-logo img {
+      height: 38px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .three-col,
+    .two-col,
+    .svc-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+    }
+
+    .section,
+    .hero,
+    .cta-section {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+ <!-- UPDATED CLICKABLE LOGO -->
+  <a href="https://culytics.com" class="nav-logo">
+    <img src="https://storage.ning.com/topology/rest/1.0/file/get/3706036834?profile=RESIZE_1200x" alt="CULytics Logo">
+  </a>
+
+  <ul class="nav-links">
+    <li>
+      <a href="https://culytics.com/consulting">
+        Targeted Consulting
+      </a>
+    </li>
+
+    <li>
+      <a href="#" class="active">
+        Solution Provider Advisory
+      </a>
+    </li>
+
+    <li>
+      <a href="https://events.culytics.com/events">
+        Events
+      </a>
+    </li>
+
+    <li>
+      <a href="https://culytics.com/partner-program">
+        Partners
+      </a>
+    </li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">GTM Acceleration Program</div>
+  <h1>CULytics Solution Provider Advisory</h1>
+  <div class="hero-tagline">Accelerate CU Growth with Market Command</div>
+  <p class="hero-desc">Helping technology and services companies win in the CU market, faster -- by delivering CU market command, persona-specific positioning, and demand-ready GTM assets.</p>
+  <a href="mailto:jon@culytics.com?subject=GTM Acceleration Inquiry" class="btn-primary">Schedule a Consultation</a>
+</section>
+
+<!-- WHY CULYTICS -->
+<section class="section why-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Why CULytics</div>
+    <div class="section-title">Not a generalist GTM firm</div>
+    <div class="section-rule"></div>
+    <p class="section-lead">Every element of the GTM Acceleration program is built on a foundation of deep CU industry expertise, direct community relationships, and a proven framework developed exclusively for the credit union market.</p>
+    <div class="three-col">
+
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24" fill="#C49A22"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <h3>Vast CU community</h3>
+        <p>Proximity to 2,500+ CU data, analytics, and technology professionals, developed through a decade of flagship events, roundtables, and education programs across North America.</p>
+      </div>
+
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24" fill="#C49A22"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <h3>Deep CU expertise</h3>
+        <p>35 years of vendor-side experience in data, analytics, and technology -- bringing strategies aligned with CU values: member centricity, financial strength, operational excellence, and regulatory compliance.</p>
+      </div>
+
+      <div class="why-card">
+        <svg class="why-icon" viewBox="0 0 24 24" fill="#C49A22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <h3>Proven GTM framework</h3>
+        <p>A structured 6-8 week engagement with clear deliverables, persona-specific outputs, and transparent pricing -- giving clients confidence in a streamlined, predictable process.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CORE SERVICES -->
+<section class="section services-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Core Services</div>
+    <div class="section-title">A single, integrated GTM journey</div>
+    <div class="section-rule"></div>
+    <p class="section-lead">Five independent components, each building on the last -- from solution-market fit through campaign execution. Delivered as a complete engagement or in selected modules.</p>
+
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <h3>Solution-Market Fit</h3>
+        <p class="svc-desc">Assess your solution's alignment with the unique challenges and needs of credit unions.</p>
+        <div class="svc-meta">
+          <div class="svc-meta-block">
+            <div class="meta-label">Objective</div>
+            <p>Thorough discovery to measure solution capabilities, use cases, and messaging alignment with CU business outcomes, pain points, and priorities.</p>
+          </div>
+          <div class="svc-meta-block">
+            <div class="meta-label">Benefit</div>
+            <p>Prepares the baseline for solution-industry alignment, benchmarking key CU priorities: operational efficiency, member satisfaction, and growth.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <h3>Understanding the Credit Union Market</h3>
+        <p class="svc-desc">An educational service providing a solution provider's product, sales, marketing, and executive teams with a comprehensive understanding of the CU industry -- its member-centric cooperative model, market segmentation, organizational dynamics, regulatory environment, performance benchmarks, and the trends shaping CU strategy and growth.</p>
+        <div class="svc-meta">
+          <div class="svc-meta-block">
+            <div class="meta-label">Objective</div>
+            <p>Equip solution provider staff with in-depth industry insights to align solutions, strategies, and persona-specific dialogue with the priorities that matter to CUs.</p>
+          </div>
+          <div class="svc-meta-block">
+            <div class="meta-label">Benefit</div>
+            <p>Enables tailored positioning and relevance to foster engagement with CU decision-makers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <h3>Strategic Market Positioning and Go-to-Market</h3>
+        <p class="svc-desc">Develop a focused GTM strategy to reach and engage the right credit unions.</p>
+        <div class="svc-meta">
+          <div class="svc-meta-block">
+            <div class="meta-label">Objective</div>
+            <p>Define an Ideal Customer Profile (ICP), market segmentation, and Unique Value Proposition (UVP) optimizing your solution's fit and impact in the CU market.</p>
+          </div>
+          <div class="svc-meta-block">
+            <div class="meta-label">Benefit</div>
+            <p>Eliminates the trial-and-error cost: misaligned messaging, wrong buyer targets, and cycles spent on lower-priority prospects at the expense of higher-value opportunities.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <h3>Persona-Specific Communications</h3>
+        <p class="svc-desc">Develop messaging tailored to resonate with the multiple stakeholders who influence a CU technology decision, from the CEO and CIO to lending executives, operations, and compliance teams.</p>
+        <div class="svc-meta">
+          <div class="svc-meta-block">
+            <div class="meta-label">Objective</div>
+            <p>Craft messaging tailored to each CU buyer and influencer persona, optimized for the solution's fit with the CU market.</p>
+          </div>
+          <div class="svc-meta-block">
+            <div class="meta-label">Benefit</div>
+            <p>Amplifies engagement and accelerates sales cycles by addressing specific buyer goals: growth, onboarding, member experience, productivity, and compliance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <h3>Campaign and Marketing Asset Development</h3>
+        <p class="svc-desc">Develop compelling campaigns and content that speak directly to CU and buyer priorities, including case studies, solution briefs, persona-specific outreach, and event-ready content.</p>
+        <div class="svc-meta">
+          <div class="svc-meta-block">
+            <div class="meta-label">Objective</div>
+            <p>Ensure every asset is built around the CU buyer's priorities, not necessarily the solution provider's features, so content earns attention rather than asking for it.</p>
+          </div>
+          <div class="svc-meta-block">
+            <div class="meta-label">Benefit</div>
+            <p>Enhances brand visibility, awareness, and drives lead generation.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section cases-section">
+  <div class="section-inner">
+    <div class="section-eyebrow">Case Studies</div>
+    <div class="section-title">Providers who have made the journey</div>
+    <div class="section-rule"></div>
+    <p class="section-lead">Representative engagements demonstrating the GTM Acceleration program in practice. Client names are available to qualified prospects upon request.</p>
+    <div class="two-col">
+
+      <div class="case-card">
+        <div class="case-tag">AI-Powered Customer Engagement</div>
+        <h3>From no CU presence to flagship event exposure</h3>
+        <p>A provider with limited CU market presence needed industry knowledge, persona-specific messaging, and a differentiated value proposition. Following the program, the company refined its ideal customer profile and presented its solution to 220 CU leaders from 130 credit unions at a CULytics flagship event.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">220</div>
+            <div class="stat-lbl">CU Leaders Reached</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">130</div>
+            <div class="stat-lbl">Credit Unions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">Conversational AI</div>
+        <h3>Structured entry strategy and Summit visibility</h3>
+        <p>A conversational AI company needed CU market differentiation and a structured entry strategy. The program delivered persona-specific messaging across five buyer roles and a comprehensive CU playbook. The company showcased its platform to 240 CU leaders from 130 credit unions at a CULytics Summit.</p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">240</div>
+            <div class="stat-lbl">CU Leaders Reached</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">130</div>
+            <div class="stat-lbl">Credit Unions</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to accelerate your path to the CU market?</h2>
+  <p>GTM Acceleration is a structured 6-8 week program with clear deliverables and transparent pricing. Let's discuss whether it is the right fit for your organization.</p>
+  <a href="mailto:jon@culytics.com?subject=GTM Acceleration Inquiry" class="btn-primary">Schedule a Consultation</a>
+  <div class="cta-contact">Or contact Jon M. Deutsch directly at <a href="mailto:jon@culytics.com">jon@culytics.com</a></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Copyright &copy; 2026 CULytics &nbsp;|&nbsp; <a href="https://culytics.com">culytics.com</a></p>
+</footer>
+
+</body>
+</html>
