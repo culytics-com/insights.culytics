@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CULytics Summits</title>
+
+<style>
+
+:root {
+    --navy: #1F2D4E;
+    --gold: #C49A22;
+    --gold-light: #F0DFA0;
+    --accent-blue: #4A6FA5;
+    --white: #ffffff;
+    --off-white: #F7F6F3;
+}
+
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--off-white);
+}
+
+/* HEADER */
+.top-header {
+    padding: 15px 60px;
+    background: var(--white);
+}
+
+.logo-link img {
+    height: 60px;
+    display: block;
+}
+
+/* HERO */
+.hero {
+    height: 420px;
+    background: url('https://storage.ning.com/topology/rest/1.0/file/get/31147062856?profile=original') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 45, 78, 0.78);
+}
+
+.hero-content {
+    position: relative;
+    color: var(--white);
+    text-align: center;
+    font-family: Georgia, serif;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 56px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* HERO SUBLINE */
+.hero-subline {
+    font-size: 26px;
+    color: var(--gold-light);
+    font-family: Georgia, serif;
+    margin-bottom: 18px;
+    letter-spacing: 0.3px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: var(--gold);
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item > a {
+    display: block;
+    padding: 18px 40px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* UNDERLINE */
+.nav-item > a::after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    bottom: 8px;
+    width: 0%;
+    height: 2px;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+}
+
+/* HOVER */
+.nav-item > a:hover {
+    color: var(--accent-blue);
+}
+
+.nav-item > a:hover::after {
+    width: 50%;
+}
+
+/* ACTIVE */
+.nav-item.active > a {
+    color: var(--accent-blue);
+}
+
+.nav-item.active > a::after {
+    width: 50%;
+}
+
+/* DIVIDERS */
+.nav-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(0,0,0,0.2);
+}
+
+/* DROPDOWN */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 280px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    border-top: 3px solid var(--gold);
+    z-index: 2000;
+}
+
+.submenu a {
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--navy);
+    font-family: Arial, sans-serif;
+    border-bottom: 1px solid #eee;
+    transition: 0.3s ease;
+}
+
+.submenu a:hover {
+    background: var(--off-white);
+    color: var(--accent-blue);
+}
+
+.dropdown:hover .submenu {
+    display: flex;
+}
+
+/* CONTENT GRID */
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 70px 80px;
+}
+
+/* LINK WRAPPER */
+.event-link {
+    text-decoration: none;
+}
+
+/* CARD */
+.event-card {
+    height: 320px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* IMAGE */
+.event-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* OVERLAY */
+.event-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(31,45,78,0.60),
+        rgba(31,45,78,0.92)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-family: Georgia, serif;
+    transition: 0.3s ease;
+}
+
+.event-overlay h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+/* HOVER EFFECT */
+.event-card:hover {
+    transform: translateY(-6px);
+}
+
+.event-card:hover::before {
+    transform: scale(1.08);
+}
+
+.event-card:hover .event-overlay {
+    background: linear-gradient(
+        rgba(196,154,34,0.88),
+        rgba(196,154,34,0.68)
+    );
+}
+
+/* BACKGROUNDS */
+.summit2026::before {
+    background-image: url('https://storage.ning.com/topology/rest/1.0/file/get/31148759271?profile=original');
+}
+
+.summit2025::before {
+    background-image: url('https://storage.ning.com/topology/rest/1.0/file/get/31148759294?profile=original');
+}
+
+.summit2024::before {
+    background-image: url('https://storage.ning.com/topology/rest/1.0/file/get/31148760069?profile=original');
+}
+
+/* FOOTER */
+.footer {
+    background: var(--navy);
+    padding: 70px 80px 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* LEFT */
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-logo img {
+    height: 55px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* SOCIAL ICONS */
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--gold);
+}
+
+.social-icons svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+/* CENTER CONTENT */
+.footer-center {
+    flex: 1;
+    text-align: center;
+}
+
+.footer-center h2 {
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    margin-bottom: 28px;
+    font-weight: normal;
+}
+
+/* CTA BUTTON */
+.footer-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    text-decoration: none;
+    padding: 14px 34px;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+}
+
+.footer-btn:hover {
+    background: #d4ab35;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-item > a {
+        padding: 16px 20px;
+    }
+
+    .events-container {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-left {
+        align-items: center;
+    }
+
+    .footer-center h2 {
+        font-size: 28px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="top-header">
+
+    <a href="https://culytics.com/" class="logo-link">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/31147042876?profile=RESIZE_400x"
+             alt="CULytics Logo">
+    </a>
+
+</div>
+
+<!-- HERO -->
+<div class="hero">
+
+    <div class="hero-content">
+        <h1>CULytics Summits</h1>
+     <!-- SUBLINE -->
+        <div class="hero-subline">
+            Turning industry dialogue into practical insight
+        </div>
+
+    </div>
+
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="nav-item">
+        <a href="https://culytics.com/consulting">
+            Targeted Consulting
+        </a>
+    </div>
+
+    <div class="nav-item dropdown">
+
+        <a href="#">
+            Transformation Center
+        </a>
+
+        <div class="submenu">
+            <a href="https://culytics.com/content-library">Content Library</a>
+            <a href="https://culytics.com/blogs">Blogs</a>
+            <a href="https://culytics.com/membership">Membership</a>
+            <a href="https://culytics.com/assessments">Assessments</a>
+            <a href="https://culytics.com/blogs/cu-peer-benchmark">CU Peer Benchmark</a>
+            <a href="https://culytics.com/blogs/peer-comparison-dashboard-marketing">CU Peer - Mkt Dashboard</a>
+        </div>
+
+    </div>
+
+    <div class="nav-item dropdown">
+        <a href="#">
+            Events
+        </a>
+       <div class="submenu">
+            <a href="https://events.culytics.com/events">Upcoming Events</a>
+            <a href="#">CULytics Summit</a>
+            <a href="#">CULytics Day</a> 
+        </div>
+
+    </div>
+
+    <div class="nav-item">
+        <a href="https://culytics.com/partner-program">
+            Partners
+        </a>
+    </div>
+
+</nav>
+
+<!-- CONTENT -->
+<div class="events-container">
+
+    <!-- Summit 2026 -->
+    <a href="https://events.culytics.com/2026-summit" class="event-link">
+
+        <div class="event-card summit2026">
+
+            <div class="event-overlay">
+                <h2>Summit 2026</h2>
+            </div>
+
+        </div>
+
+    </a>
+
+    <!-- Summit 2025 -->
+    <a href="https://culytics.com/2025-summit" class="event-link">
+
+        <div class="event-card summit2025">
+
+            <div class="event-overlay">
+                <h2>Summit 2025</h2>
+            </div>
+
+        </div>
+
+    </a>
+
+    <!-- Summit 2024 -->
+    <a href="https://culytics.com/2024-summit" class="event-link">
+
+        <div class="event-card summit2024">
+
+            <div class="event-overlay">
+                <h2>Summit 2024</h2>
+            </div>
+
+        </div>
+
+    </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- LEFT -->
+        <div class="footer-left">
+
+            <!-- WHITE LOGO -->
+            <a href="https://culytics.com/" class="footer-logo">
+
+                <img src="https://storage.ning.com/topology/rest/1.0/file/get/3706036834?profile=RESIZE_1200x"
+                     alt="CULytics White Logo">
+
+            </a>
+
+            <!-- SOCIAL -->
+            <div class="social-icons">
+
+                <!-- LINKEDIN -->
+                <a href="https://www.linkedin.com/company/culytics/" target="_blank">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-.9 1.8-2.2 3.8-2.2 4 0 4.8 2.6 4.8 6V24h-4v-7.1c0-1.7 0-3.9-2.4-3.9s-2.7 1.9-2.7 3.8V24h-4V8z"/>
+                    </svg>
+
+                </a>
+
+                <!-- TWITTER / X -->
+                <a href="https://twitter.com/CULytics" target="_blank">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.8-6.2L6.5 22H3.4l7.3-8.3L1 2h6.3l4.3 5.7L18.9 2zm-1.1 18h1.7L6.2 3.9H4.4L17.8 20z"/>
+                    </svg>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CENTER -->
+        <div class="footer-center">
+
+            <h2>
+                Got questions about CULytics Summit.
+            </h2>
+
+            <a href="mailto:info@culytics.com" class="footer-btn">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
