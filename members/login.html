@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CULytics Member Login</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    max-width:500px;
+    margin:60px auto;
+    padding:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    box-sizing:border-box;
+}
+
+button{
+    background:#0B2341;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+}
+
+#otpSection{
+    display:none;
+}
+
+#message{
+    margin-top:15px;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<h1>CULytics Member Access</h1>
+
+<p>Enter your email address.</p>
+
+<input
+    type="email"
+    id="email"
+    placeholder="Email Address"
+>
+
+<button onclick="sendCode()">
+Send Verification Code
+</button>
+
+<div id="otpSection">
+
+    <h3>Enter Verification Code</h3>
+
+    <input
+        type="text"
+        id="otp"
+        placeholder="6 Digit Code"
+    >
+
+    <button onclick="verifyCode()">
+        Verify Code
+    </button>
+
+</div>
+
+<div id="message"></div>
+
+<script>
+
+const supabaseClient =
+supabase.createClient(
+'https://tkwpqjekdwwacqxwmmri.supabase.co',
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrd3BxamVrZHd3YWNxeHdtbXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNTg1MDIsImV4cCI6MjA5NTczNDUwMn0.ppYBTNyhopXJJ7ASE9Y3oPXeuXhX3nlXiYTEObD2mD4'
+);
+
+async function sendCode(){
+
+    const email =
+        document.getElementById('email').value;
+
+    const message =
+        document.getElementById('message');
+
+    const { error } =
+        await supabaseClient.auth.signInWithOtp({
+            email: email
+        });
+
+    if(error){
+        message.innerHTML = error.message;
+        return;
+    }
+
+    document.getElementById('otpSection').style.display='block';
+
+    message.innerHTML =
+        'Verification code sent to your email.';
+}
+
+async function verifyCode(){
+
+    const email =
+        document.getElementById('email').value;
+
+    const otp =
+        document.getElementById('otp').value;
+
+    const message =
+        document.getElementById('message');
+
+    const { data, error } =
+        await supabaseClient.auth.verifyOtp({
+            email: email,
+            token: otp,
+            type: 'email'
+        });
+
+    if(error){
+        message.innerHTML =
+            error.message;
+        return;
+    }
+
+    window.location.href =
+        '/members/test-content.html';
+}
+</script>
+
+</body>
+</html>
