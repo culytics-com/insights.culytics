@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Protected Test Page</title>
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    max-width:800px;
+    margin:auto;
+    padding:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Protected Content</h1>
+
+<p>
+Congratulations!
+</p>
+
+<p>
+You successfully passed authentication and access verification.
+</p>
+
+<p>
+This page will later contain videos, PDFs, reports, etc.
+</p>
+
+</body>
+</html>
