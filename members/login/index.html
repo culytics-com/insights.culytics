@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,26 +9,23 @@
 body{
     font-family:Arial,sans-serif;
     max-width:500px;
-    margin:60px auto;
+    margin:50px auto;
     padding:20px;
 }
 
 input{
     width:100%;
     padding:12px;
-    margin:10px 0;
+    margin:8px 0;
     box-sizing:border-box;
 }
 
 button{
-    background:#0B2341;
-    color:white;
-    border:none;
     padding:12px 20px;
     cursor:pointer;
 }
 
-#otpSection{
+.hidden{
     display:none;
 }
 
@@ -36,102 +34,224 @@ button{
 }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
-<h1>CULytics Member Access</h1>
-
-<p>Enter your email address.</p>
+<h2>Member Login</h2>
 
 <input
-    type="email"
-    id="email"
-    placeholder="Email Address"
+type="email"
+id="email"
+placeholder="Email Address"
+
 >
 
-<button onclick="sendCode()">
-Send Verification Code
+<button id="continueBtn">
+    Continue
 </button>
 
-<div id="otpSection">
+<div id="newUserFields" class="hidden">
 
-    <h3>Enter Verification Code</h3>
+```
+<h3>Tell us about yourself</h3>
 
-    <input
-        type="text"
-        id="otp"
-        placeholder="6 Digit Code"
-    >
+<input
+    type="text"
+    id="name"
+    placeholder="Full Name"
+>
 
-    <button onclick="verifyCode()">
-        Verify Code
-    </button>
+<input
+    type="text"
+    id="title"
+    placeholder="Title"
+>
+
+<input
+    type="text"
+    id="organization"
+    placeholder="Organization Name"
+>
+```
 
 </div>
 
-<div id="message"></div>
+<div id="otpSection" class="hidden">
 
-<script>
+```
+<input
+    type="text"
+    id="otp"
+    placeholder="Enter 6-digit OTP"
+>
 
-const supabaseClient =
-supabase.createClient(
-'https://tkwpqjekdwwacqxwmmri.supabase.co',
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrd3BxamVrZHd3YWNxeHdtbXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNTg1MDIsImV4cCI6MjA5NTczNDUwMn0.ppYBTNyhopXJJ7ASE9Y3oPXeuXhX3nlXiYTEObD2mD4'
+<button id="verifyBtn">
+    Verify OTP
+</button>
+```
+
+</div>
+
+<p id="message"></p>
+
+<script type="module">
+
+import { createClient }
+from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+    'https://tkwpqjekdwwacqxwmmri.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrd3BxamVrZHd3YWNxeHdtbXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNTg1MDIsImV4cCI6MjA5NTczNDUwMn0.ppYBTNyhopXJJ7ASE9Y3oPXeuXhX3nlXiYTEObD2mD4'
 );
 
-async function sendCode(){
+let userType = null;
+
+const emailInput =
+document.getElementById('email');
+
+const message =
+document.getElementById('message');
+
+const otpSection =
+document.getElementById('otpSection');
+
+const newUserFields =
+document.getElementById('newUserFields');
+
+document
+.getElementById('continueBtn')
+.addEventListener('click', async () => {
 
     const email =
-        document.getElementById('email').value;
+    emailInput.value.trim().toLowerCase();
 
-    const message =
-        document.getElementById('message');
+    if(!email){
+        message.innerText =
+        'Please enter an email.';
+        return;
+    }
+
+    const { data: member } =
+    await supabase
+        .from('members')
+        .select('status')
+        .eq('email', email)
+        .single();
+
+    if(member){
+
+        userType = member.status;
+
+    } else {
+
+        userType = 'new';
+
+        newUserFields
+        .classList
+        .remove('hidden');
+    }
 
     const { error } =
-        await supabaseClient.auth.signInWithOtp({
-            email: email
-        });
+    await supabase.auth.signInWithOtp({
+        email
+    });
 
     if(error){
-        message.innerHTML = error.message;
+
+        message.innerText =
+        error.message;
+
         return;
     }
 
-    document.getElementById('otpSection').style.display='block';
+    otpSection
+    .classList
+    .remove('hidden');
 
-    message.innerHTML =
-        'Verification code sent to your email.';
-}
+    message.innerText =
+    'OTP sent to your email.';
+});
 
-async function verifyCode(){
+document
+.getElementById('verifyBtn')
+.addEventListener('click', async () => {
 
     const email =
-        document.getElementById('email').value;
+    emailInput.value.trim().toLowerCase();
 
-    const otp =
-        document.getElementById('otp').value;
+    const token =
+    document.getElementById('otp')
+    .value.trim();
 
-    const message =
-        document.getElementById('message');
-
-    const { data, error } =
-        await supabaseClient.auth.verifyOtp({
-            email: email,
-            token: otp,
-            type: 'email'
-        });
+    const { error } =
+    await supabase.auth.verifyOtp({
+        email,
+        token,
+        type:'email'
+    });
 
     if(error){
-        message.innerHTML =
-            error.message;
+
+        message.innerText =
+        error.message;
+
         return;
     }
 
-    window.location.href =
-        '/events/';
-}
+    if(userType === 'approved'){
+
+        window.location.href =
+        '/member-content.html';
+
+        return;
+    }
+
+    if(userType === 'imported'){
+
+        window.location.href =
+        '/access-pending.html';
+
+        return;
+    }
+
+    if(userType === 'new'){
+
+        const name =
+        document.getElementById('name')
+        .value.trim();
+
+        const title =
+        document.getElementById('title')
+        .value.trim();
+
+        const organization =
+        document.getElementById('organization')
+        .value.trim();
+
+        if(!name || !title || !organization){
+
+            message.innerText =
+            'Please complete all fields.';
+
+            return;
+        }
+
+        await supabase
+            .from('pending_members')
+            .upsert({
+                email,
+                name,
+                title,
+                organization
+            });
+
+        window.location.href =
+        '/access-pending.html';
+    }
+
+});
+
 </script>
 
 </body>
