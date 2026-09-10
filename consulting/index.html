@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>CULytics Consulting</title>
+<meta name="description" content="Data Analytics Strategic Consulting for Credit Unions. CULytics Consulting helps credit unions accelerate their data analytics journey with a sharp focus on real-world outcomes.">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --navy:#1F2D4E;
+  --gold:#C49A22;
+  --gold-light:#F0DFA0;
+  --accent-blue:#4A6FA5;
+  --white:#ffffff;
+  --off-white:#F7F6F3;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#ffffff;
+  color:var(--navy);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+}
+
+.container{
+  width:90%;
+  max-width:1280px;
+  margin:auto;
+}
+
+/* =========================
+MOBILE NAVIGATION
+========================= */
+
+.mobile-menu-toggle{
+  display:none;
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:white;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  margin-left:auto;
+  position:relative;
+  z-index:100001;
+  box-shadow:0 10px 25px rgba(0,0,0,0.06);
+}
+
+.mobile-menu-toggle span{
+  width:22px;
+  height:2px;
+  background:var(--navy);
+  border-radius:10px;
+}
+
+.mobile-menu{
+  position:fixed;
+  top:88px;
+  left:0;
+  width:100%;
+  height:calc(100vh - 88px);
+  background:white;
+  padding:30px;
+  display:none;
+  flex-direction:column;
+  gap:18px;
+  overflow-y:auto;
+  z-index:100000;
+  box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.mobile-menu.active{
+  display:flex;
+}
+
+.mobile-menu a{
+  color:var(--navy);
+  font-weight:600;
+}
+
+.mobile-dropdown{
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+.mobile-dropdown-toggle{
+  width:100%;
+  background:none;
+  border:none;
+  padding:16px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:16px;
+  font-weight:600;
+  color:var(--navy);
+  cursor:pointer;
+  text-align:left;
+}
+
+.mobile-dropdown-toggle span{
+  font-size:22px;
+  color:var(--gold);
+  transition:0.3s ease;
+}
+
+.mobile-submenu{
+  display:none;
+  padding-bottom:12px;
+}
+
+.mobile-submenu.active{
+  display:block;
+}
+
+.mobile-submenu a{
+  display:block;
+  padding:12px 16px;
+  border-radius:10px;
+  margin-bottom:6px;
+  color:#667085;
+  font-size:15px;
+  transition:0.3s ease;
+}
+
+.mobile-submenu a:hover{
+  background:rgba(196,154,34,0.08);
+  color:var(--gold);
+}
+
+.mobile-btn{
+  margin-top:10px;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid rgba(31,45,78,0.1);
+}
+
+.mobile-primary{
+  background:var(--gold);
+  color:white !important;
+  border:none;
+}
+
+@media(max-width:768px){
+  .nav-links{ display:none; }
+  .nav-buttons{ display:none !important; }
+  .mobile-menu-toggle{ display:flex; }
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:99999;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+nav.scrolled{
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(16px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.nav-wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 0;
+  position:relative;
+}
+
+.logo-link{
+  display:inline-flex;
+  align-items:center;
+}
+
+.site-logo{
+  height:52px;
+  width:auto;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:35px;
+}
+
+.nav-links a{
+  color:var(--navy);
+  font-weight:500;
+  transition:0.3s ease;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+.nav-buttons{
+  display:flex;
+  gap:15px;
+}
+
+.nav-dropdown{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.dropdown-trigger{
+  position:relative;
+  padding:10px 0;
+  display:inline-block;
+}
+
+.nav-dropdown::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
+  height:18px;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:50%;
+  transform:translateX(-50%) translateY(10px);
+  min-width:220px;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(31,45,78,0.08);
+  border-radius:18px;
+  padding:12px;
+  box-shadow:0 20px 50px rgba(31,45,78,0.08);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:0.25s ease;
+  z-index:999;
+}
+
+.nav-dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+  pointer-events:auto;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  border-radius:12px;
+  color:var(--navy);
+  font-weight:500;
+  transition:0.25s ease;
+}
+
+.dropdown-menu a:hover{
+  background:rgba(196,154,34,0.10);
+  color:var(--gold);
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:white;
+  padding:14px 24px;
+  border-radius:14px;
+  font-weight:600;
+  transition:0.3s ease;
+  box-shadow:0 10px 25px rgba(196,154,34,0.25);
+  display:inline-block;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+  background:#b48818;
+}
+
+.btn-secondary{
+  border:1px solid rgba(31,45,78,0.15);
+  color:var(--navy);
+  padding:14px 24px;
+  border-radius:14px;
+  font-weight:600;
+  background:white;
+  transition:0.3s ease;
+  display:inline-block;
+}
+
+.btn-secondary:hover{
+  background:var(--off-white);
+}
+
+/* =========================
+PREMIUM HERO
+========================= */
+
+.consulting-hero{
+  position:relative;
+  min-height:680px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:140px 0;
+  background:linear-gradient(135deg,#ffffff 0%,#f7f6f3 100%);
+}
+
+.hero-background-image{
+  position:absolute;
+  inset:0;
+  background-image:url('https://storage.ning.com/topology/rest/1.0/file/get/3635923819?profile=RESIZE_1024x1024');
+  background-size:cover;
+  background-position:center;
+  opacity:0.10;
+  transform:scale(1.04);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0.78) 0%,rgba(247,246,243,0.86) 100%);
+  z-index:1;
+}
+
+.hero-blur{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(110px);
+  opacity:0.18;
+  z-index:2;
+}
+
+.blur-1{
+  width:420px;
+  height:420px;
+  background:#C49A22;
+  top:-140px;
+  left:-120px;
+}
+
+.blur-2{
+  width:380px;
+  height:380px;
+  background:#4A6FA5;
+  bottom:-140px;
+  right:-100px;
+}
+
+.blur-3{
+  width:260px;
+  height:260px;
+  background:#ffffff;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.hero-content{
+  position:relative;
+  z-index:5;
+  max-width:980px;
+  margin:auto;
+  text-align:center;
+}
+
+.hero-subtitle{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 22px;
+  border-radius:50px;
+  background:rgba(196,154,34,0.10);
+  border:1px solid rgba(196,154,34,0.16);
+  color:#C49A22;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  margin-bottom:34px;
+  backdrop-filter:blur(10px);
+}
+
+.hero-content h1{
+  font-size:72px;
+  line-height:1.02;
+  letter-spacing:-3px;
+  color:#1F2D4E;
+  margin-bottom:30px;
+  font-weight:800;
+  max-width:920px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.hero-content p{
+  font-size:20px;
+  color:#667085;
+  max-width:720px;
+  margin:auto;
+  margin-bottom:42px;
+  line-height:1.7;
+}
+
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.hero-secondary{
+  background:rgba(255,255,255,0.82);
+  backdrop-filter:blur(10px);
+}
+
+@media(max-width:1100px){
+  .hero-content h1{ font-size:50px; letter-spacing:-2px; }
+}
+
+@media(max-width:768px){
+  .consulting-hero{ min-height:auto; padding:110px 0 100px; }
+  .hero-content h1{ font-size:38px; letter-spacing:-1.5px; }
+  .hero-content p{ font-size:17px; }
+  .hero-buttons{ flex-direction:column; }
+}
+
+/* =========================
+SECTION GENERAL
+========================= */
+
+section{
+  position:relative;
+}
+
+.section-eyebrow{
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:50px;
+  background:rgba(74,111,165,0.08);
+  color:var(--accent-blue);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.4px;
+  margin-bottom:22px;
+  text-transform:uppercase;
+}
+
+.section-header{
+  max-width:760px;
+  margin:0 auto 60px;
+  text-align:center;
+}
+
+.section-header h2{
+  font-size:48px;
+  letter-spacing:-2px;
+  color:var(--navy);
+  margin-bottom:20px;
+  line-height:1.1;
+}
+
+.section-header p{
+  font-size:18px;
+  color:#667085;
+  line-height:1.7;
+}
+
+/* =========================
+DESCRIPTION
+========================= */
+
+.description-section{
+  padding:110px 0 90px;
+  background:#ffffff;
+}
+
+.description-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:flex-start;
+}
+
+.description-grid h2{
+  font-size:42px;
+  letter-spacing:-1.5px;
+  color:var(--navy);
+  line-height:1.15;
+}
+
+.desc-left{
+  display:flex;
+  flex-direction:column;
+}
+
+.desc-highlight{
+  margin-top:36px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+  flex-wrap:wrap;
+}
+
+.desc-icon{
+  width:72px;
+  height:72px;
+  border-radius:20px;
+  background:rgba(196,154,34,0.10);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.desc-icon svg{
+  width:34px;
+  height:34px;
+  stroke:var(--gold);
+}
+
+.desc-stats{
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.desc-stat{
+  display:flex;
+  flex-direction:column;
+}
+
+.stat-num{
+  font-size:32px;
+  font-weight:800;
+  color:var(--navy);
+  letter-spacing:-1px;
+  line-height:1;
+}
+
+.stat-label{
+  font-size:13px;
+  color:#667085;
+  margin-top:6px;
+  font-weight:600;
+}
+
+@media(max-width:500px){
+  .desc-highlight{ flex-direction:column; align-items:flex-start; }
+}
+
+.description-grid .desc-copy p{
+  font-size:17px;
+  color:#667085;
+  margin-bottom:22px;
+  line-height:1.8;
+}
+
+.description-grid .desc-copy p:last-child{
+  margin-bottom:0;
+}
+
+@media(max-width:900px){
+  .description-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+}
+
+/* =========================
+PROCESS
+========================= */
+
+.process-section{
+  padding:100px 0;
+  background:linear-gradient(180deg,#ffffff 0%,#F7F6F3 100%);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:28px;
+  margin-bottom:70px;
+}
+
+.process-card{
+  background:white;
+  border-radius:28px;
+  padding:38px 30px;
+  border:1px solid rgba(0,0,0,0.04);
+  box-shadow:0 20px 60px rgba(31,45,78,0.06);
+  transition:0.4s ease;
+}
+
+.process-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 80px rgba(31,45,78,0.12);
+}
+
+.process-num{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:rgba(196,154,34,0.10);
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:18px;
+  margin-bottom:22px;
+}
+
+.process-card h3{
+  font-size:21px;
+  letter-spacing:-0.5px;
+  color:var(--navy);
+  margin-bottom:12px;
+}
+
+.process-card p{
+  font-size:15px;
+  color:#667085;
+  line-height:1.7;
+}
+
+.process-diagram{
+  border-radius:32px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(31,45,78,0.08);
+  border:1px solid rgba(0,0,0,0.04);
+}
+
+.process-diagram img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+@media(max-width:1100px){
+  .process-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:600px){
+  .process-grid{ grid-template-columns:1fr; }
+}
+
+/* =========================
+PRACTICE AREAS
+========================= */
+
+.practice-section{
+  padding:100px 0 60px;
+  background:linear-gradient(180deg,#F7F6F3 0%,#ffffff 100%);
+}
+
+.practice-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+  margin-bottom:100px;
+}
+
+.practice-row:last-child{
+  margin-bottom:0;
+}
+
+.practice-row.reverse .practice-image{
+  order:2;
+}
+
+.practice-row.reverse .practice-copy{
+  order:1;
+}
+
+.practice-image{
+  border-radius:32px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(31,45,78,0.08);
+  border:1px solid rgba(0,0,0,0.04);
+}
+
+.practice-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  aspect-ratio:4/3;
+}
+
+.practice-tag{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:50px;
+  background:rgba(196,154,34,0.10);
+  color:var(--gold);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.practice-copy h3{
+  font-size:32px;
+  letter-spacing:-1px;
+  color:var(--navy);
+  margin-bottom:16px;
+  line-height:1.2;
+}
+
+.practice-copy p{
+  font-size:16px;
+  color:#667085;
+  line-height:1.8;
+  margin-bottom:14px;
+}
+
+.practice-copy p:last-child{
+  margin-bottom:0;
+}
+
+@media(max-width:900px){
+  .practice-row,
+  .practice-row.reverse .practice-image,
+  .practice-row.reverse .practice-copy{
+    grid-template-columns:1fr;
+    order:0;
+  }
+  .practice-row{
+    grid-template-columns:1fr;
+    gap:30px;
+    margin-bottom:60px;
+  }
+}
+
+/* =========================
+OUR CUSTOMERS
+========================= */
+
+.customers-section{
+  padding:90px 0 100px;
+  background:#ffffff;
+  overflow:hidden;
+}
+
+.customer-slider{
+  width:100%;
+  overflow:hidden;
+  margin-top:45px;
+  position:relative;
+  padding:12px 0;
+}
+
+.customer-track{
+  display:flex;
+  width:max-content;
+  animation:customerScroll 32s linear infinite;
+  will-change:transform;
+}
+
+.customer-set{
+  display:flex;
+  align-items:center;
+  gap:80px;
+  padding-right:80px;
+  flex-shrink:0;
+}
+
+.customer-logo{
+  width:210px;
+  height:105px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.customer-logo img{
+  display:block;
+  max-width:190px;
+  max-height:78px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+
+@keyframes customerScroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+.customer-slider:hover .customer-track{
+  animation-play-state:paused;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .customer-track{
+    animation:none;
+    transform:none;
+  }
+}
+
+@media(max-width:900px){
+  .customer-set{ gap:45px; padding-right:45px; }
+  .customer-logo{ width:165px; height:90px; }
+  .customer-logo img{ max-width:150px; max-height:65px; }
+}
+
+/* =========================
+CTA
+========================= */
+
+.consulting-cta{
+  margin:0 auto 110px;
+  max-width:1280px;
+  width:90%;
+  background:linear-gradient(135deg,#1F2D4E,#18233D);
+  border-radius:42px;
+  padding:95px 80px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.consulting-cta::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top left,rgba(196,154,34,0.18),transparent 40%);
+}
+
+.consulting-cta::after{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:rgba(196,154,34,0.08);
+  top:-220px;
+  right:-120px;
+}
+
+.consulting-cta h2{
+  position:relative;
+  z-index:2;
+  color:white;
+  font-size:52px;
+  line-height:1.1;
+  letter-spacing:-2px;
+  margin-bottom:24px;
+}
+
+.consulting-cta p{
+  position:relative;
+  z-index:2;
+  color:rgba(255,255,255,0.72);
+  font-size:18px;
+  max-width:640px;
+  margin:auto;
+  margin-bottom:40px;
+}
+
+.cta-btn{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px 34px;
+  border-radius:14px;
+  background:var(--gold);
+  color:white;
+  font-weight:700;
+  transition:0.3s ease;
+  box-shadow:0 10px 30px rgba(196,154,34,0.25);
+}
+
+.cta-btn:hover{
+  transform:translateY(-2px);
+  background:#b48818;
+}
+
+@media(max-width:768px){
+  .consulting-cta{ padding:60px 30px; border-radius:28px; }
+  .consulting-cta h2{ font-size:34px; }
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+  background:var(--navy);
+  color:rgba(255,255,255,0.7);
+  padding:80px 0 40px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+  margin-bottom:60px;
+}
+
+.footer-site-logo{
+  height:58px;
+  width:auto;
+  margin-bottom:20px;
+}
+
+.footer-column h4{
+  color:white;
+  margin-bottom:20px;
+}
+
+.footer-column a{
+  display:block;
+  color:rgba(255,255,255,0.7);
+  margin-bottom:14px;
+  transition:0.3s;
+}
+
+.footer-column a:hover{
+  color:var(--gold-light);
+}
+
+.footer-socials{
+  display:flex;
+  gap:16px;
+  margin-top:24px;
+}
+
+.footer-socials a{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.3s ease;
+}
+
+.footer-socials a:hover{
+  background:rgba(255,255,255,0.16);
+  transform:translateY(-2px);
+}
+
+.footer-socials svg{
+  width:18px;
+  height:18px;
+  fill:white;
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:30px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+  .footer-grid{ grid-template-columns:1fr; }
+  .hero-content h1{ font-size:46px; }
+  .section-header h2{ font-size:38px; }
+}
+
+@media(max-width:768px){
+  .nav-links{ display:none; }
+  .section-header h2{ font-size:32px; }
+  .description-grid h2{ font-size:30px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<nav>
+  <div class="container nav-wrapper">
+
+    <a href="https://culytics.com" class="logo-link">
+      <img src="https://storage.ning.com/topology/rest/1.0/file/get/31147042876?profile=RESIZE_400x"
+           alt="CULytics Logo"
+           class="site-logo">
+    </a>
+
+    <div class="nav-links">
+
+      <!-- Targeted Consulting -->
+      <div class="nav-dropdown">
+
+        <a href="https://culytics.com/consulting" class="dropdown-trigger">
+          Targeted Consulting
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="https://culytics.com/consulting">CU Consulting</a>
+          <a href="https://culytics.com/assessments">Self Assessments</a>
+          <a href="https://culytics.com/blogs/cu-peer-benchmark">CU Peer Benchmark</a>
+          <a href="https://culytics.com/blogs/peer-comparison-dashboard-marketing/">CU Peer - Mkt Dashboard</a>
+        </div>
+
+      </div>
+
+      <!-- Transformation Center -->
+      <div class="nav-dropdown">
+
+        <a href="#" class="dropdown-trigger">
+          Transformation Center
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="https://culytics.com/content-library">Content Library</a>
+          <a href="https://culytics.com/blogs">Blogs</a>
+          <a href="https://culytics.com/membership">Membership</a>
+          <a href="https://culytics.com/guide-for-building-a-data-analytics-practice">Data Analytics Guide</a>
+        </div>
+
+      </div>
+
+      <!-- Events -->
+      <div class="nav-dropdown">
+
+        <a href="#" class="dropdown-trigger">
+          Events
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="https://events.culytics.com/events">Upcoming Events</a>
+          <a href="https://events.culytics.com/culytics-day-2026">CULytics Day 2026</a>
+          <a href="https://insights.culytics.com/events/">Past Events</a>
+        </div>
+
+      </div>
+
+      <!-- Partners -->
+      <div class="nav-dropdown">
+
+        <a href="#" class="dropdown-trigger">
+          Partners
+        </a>
+
+        <div class="dropdown-menu">
+          <a href="https://insights.culytics.com/sp-advisory/">SP Consulting</a>
+          <a href="https://culytics.com/partner-program">Partner Opportunities</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="nav-buttons">
+      <a href="https://culytics.com/content-library" class="btn-secondary">
+        Explore Insights
+      </a>
+
+      <a href="mailto:consulting@culytics.com" class="btn-primary">
+        Talk To Us
+      </a>
+  </div>
+
+</div>
+</nav>
+<div class="mobile-menu-toggle">
+
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu">
+
+  <!-- Targeted Consulting -->
+  <div class="mobile-dropdown">
+
+    <button class="mobile-dropdown-toggle">
+      Targeted Consulting
+      <span>+</span>
+    </button>
+
+    <div class="mobile-submenu">
+
+      <a href="https://culytics.com/consulting">
+        CU Consulting
+      </a>
+
+      <a href="https://culytics.com/assessments">
+        Self Assessments
+      </a>
+
+      <a href="https://culytics.com/blogs/cu-peer-benchmark">
+        CU Peer Benchmark
+      </a>
+
+      <a href="https://culytics.com/blogs/peer-comparison-dashboard-marketing/">
+        CU Peer - Mkt Dashboard
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Transformation Center -->
+  <div class="mobile-dropdown">
+
+    <button class="mobile-dropdown-toggle">
+      Transformation Center
+      <span>+</span>
+    </button>
+
+    <div class="mobile-submenu">
+
+      <a href="https://culytics.com/content-library">
+        Content Library
+      </a>
+
+      <a href="https://culytics.com/blogs">
+        Blogs
+      </a>
+
+      <a href="https://culytics.com/membership">
+        Membership
+      </a>
+
+      <a href="https://culytics.com/guide-for-building-a-data-analytics-practice">
+        Data Analytics Guide
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Events -->
+  <div class="mobile-dropdown">
+
+    <button class="mobile-dropdown-toggle">
+      Events
+      <span>+</span>
+    </button>
+
+    <div class="mobile-submenu">
+
+      <a href="https://events.culytics.com/events">
+        Upcoming Events
+      </a>
+
+      <a href="https://events.culytics.com/culytics-day-2026">
+        CULytics Day 2026
+      </a>
+
+      <a href="https://insights.culytics.com/events/">
+        Past Events
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Partners -->
+  <div class="mobile-dropdown">
+
+    <button class="mobile-dropdown-toggle">
+      Partners
+      <span>+</span>
+    </button>
+
+    <div class="mobile-submenu">
+
+      <a href="https://insights.culytics.com/sp-advisory/">
+        SP Consulting
+      </a>
+
+      <a href="https://culytics.com/partner-program">
+        Partner Opportunities
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+</nav>
+
+<!-- =========================
+HERO
+========================= -->
+
+<section class="consulting-hero">
+
+  <div class="hero-background-image"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-blur blur-1"></div>
+  <div class="hero-blur blur-2"></div>
+  <div class="hero-blur blur-3"></div>
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <div class="hero-subtitle">
+        Welcome To CULytics Consulting
+      </div>
+
+      <h1>
+        Accelerate Your Credit Union's Data Analytics Journey
+      </h1>
+
+      <p>
+        Built by credit union leaders for credit unions — hands-on industry experience, deep analytics expertise, and a practical, execution-first approach.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="mailto:consulting@culytics.com" class="btn-primary">
+          Talk To Our Team
+        </a>
+
+        <a href="#practice-areas" class="btn-secondary hero-secondary">
+          Explore Practice Areas
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+PRACTICE AREAS
+========================= -->
+
+<section class="practice-section" id="practice-areas">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-eyebrow">Practice Areas</div>
+      <h2>Our Practice Areas</h2>
+      <p>
+        Five focused engagements built for every stage of the data and AI journey.
+      </p>
+    </div>
+
+    <!-- ROW -->
+    <div class="practice-row">
+
+      <div class="practice-image">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/10830507660?profile=RESIZE_584x" alt="Accelerate Your Data Analytics Roadmap">
+      </div>
+
+      <div class="practice-copy">
+        <div class="practice-tag">Strategy &amp; Roadmap</div>
+        <h3>Accelerate Your Data Analytics Roadmap (with AI Built In)</h3>
+        <p><strong>A fast, focused path from strategy to measurable outcomes.</strong></p>
+        <p>
+          This engagement is designed for credit unions that want clarity, prioritization, and momentum — without years of trial and error. We help you accelerate results by aligning analytics and AI initiatives directly to business goals, with a clear focus on ROI and execution.
+        </p>
+        <p>
+          You'll receive a prioritized, 24 month roadmap built from executive interviews, current state assessment, and analytics/AI maturity analysis — all broken into practical 180 day action waves your team can actually execute.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ROW -->
+    <div class="practice-row reverse">
+
+      <div class="practice-image">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/10830507684?profile=RESIZE_584x" alt="Governance That Scales With Growth">
+      </div>
+
+      <div class="practice-copy">
+        <div class="practice-tag">Data Governance</div>
+        <h3>Governance That Scales With Growth</h3>
+        <p><strong>Examiner ready. Executive friendly. Built for real life.</strong></p>
+        <p>
+          Our Data Governance Jumpstart creates a practical foundation that enables better decisions and accelerates the analytics journey. Designed specifically for credit unions — and especially critical as assets approach or exceed $10B — this engagement brings structure, clarity, and confidence.
+        </p>
+        <p>
+          We deliver a clear governance charter, defined roles and responsibilities, a detailed framework, and a concrete task plan your team can put into action immediately.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ROW -->
+    <div class="practice-row">
+
+      <div class="practice-image">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/10830508268?profile=RESIZE_584x" alt="Always On Analytics Advisory">
+      </div>
+
+      <div class="practice-copy">
+        <div class="practice-tag">Ongoing Advisory</div>
+        <h3>Always On Analytics Advisory</h3>
+        <p><strong>Turn insights into action — month after month.</strong></p>
+        <p>
+          The Analytics Accelerator Retainer provides ongoing, hands on guidance to help credit unions maintain momentum and continuously convert data into business impact. Through monthly touchpoints, we help prioritize analytics backlogs, design and build high value data structures and dashboards, mentor internal teams, and track results tied to growth, efficiency, and risk reduction.
+        </p>
+        <p>
+          This real world model has supported multi million dollar revenue gains and loss avoidance for prior clients.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ROW -->
+    <div class="practice-row reverse">
+
+      <div class="practice-image">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/31050152299?profile=RESIZE_710x" alt="Make the Right Enterprise Data Warehouse Platform Decision">
+      </div>
+
+      <div class="practice-copy">
+        <div class="practice-tag">Platform Selection</div>
+        <h3>Make the Right Enterprise Data Warehouse Platform Decision</h3>
+        <p><strong>Build vs. buy — with confidence and clarity.</strong></p>
+        <p>
+          This engagement helps credit unions cut through vendor noise and internal uncertainty when evaluating their data warehouse or analytics platform.
+        </p>
+        <p>
+          We assess your current environment, benchmark it against proven maturity models, and guide you through platform selection with highly prescriptive recommendations — focusing on the infrastructure and transformed data that drive the greatest value. The result is a defensible decision and a practical roadmap forward.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ROW -->
+    <div class="practice-row">
+
+      <div class="practice-image">
+        <img src="https://storage.ning.com/topology/rest/1.0/file/get/31050152689?profile=RESIZE_930x" alt="From AI Curiosity to AI Confidence">
+      </div>
+
+      <div class="practice-copy">
+        <div class="practice-tag">AI Readiness</div>
+        <h3>From AI Curiosity to AI Confidence</h3>
+        <p><strong>Identify high value use cases without unnecessary risk.</strong></p>
+        <p>
+          Our AI Readiness &amp; Use Case Sprint helps credit unions move forward with AI safely and strategically.
+        </p>
+        <p>
+          We assess readiness and risk, define guardrails, and identify high impact, low risk AI use cases across operations, development, call centers, marketing, and analytics — with clear guidance on implementation considerations and pitfalls to avoid.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================
+DESCRIPTION
+========================= -->
+
+<section class="description-section">
+  <div class="container">
+
+    <div class="description-grid">
+
+  <div class="desc-left">
+
+    <h2>
+      Data Analytics Strategic Consulting for Credit Unions
+    </h2>
+
+    <div class="desc-highlight">
+      <div class="desc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>
+        </svg>
+      </div>
+      <div class="desc-stats">
+        <div class="desc-stat">
+          <span class="stat-num">24</span>
+          <span class="stat-label">Month Roadmap</span>
+        </div>
+        <div class="desc-stat">
+          <span class="stat-num">180</span>
+          <span class="stat-label">Day Action Waves</span>
+        </div>
+        <div class="desc-stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Practice Areas</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="desc-copy">
+    <p>
+      CULytics Consulting helps credit unions accelerate their data analytics journey with a sharp focus on real-world outcomes. Built by credit union leaders for credit unions, our consulting offerings combine hands-on industry experience, deep analytics expertise, and a practical, execution-first approach.
+    </p>
+    <p>
+      We don't deliver theory or generic frameworks. We help you prioritize what matters most, realize ROI from data faster, and make better, more confident data-driven decisions — whether you're standing up your data foundation, scaling governance, operationalizing analytics for growth, or preparing for AI.
+    </p>
+  </div>
+
+</div>
+
+  </div>
+</section>
+
+<!-- =========================
+OUR PROCESS
+========================= -->
+
+<section class="process-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-eyebrow">Our Process</div>
+      <h2>A Path Built To Accelerate Outcomes</h2>
+      <p>
+        Our consulting engagements are designed to accelerate outcomes — not prolong analysis. We focus on what matters most, meet your credit union where it is today, and quickly translate insight into action. Every engagement is grounded in real-world CU experience, a maturity-based lens, and a relentless emphasis on ROI, better decisions, and measurable business impact.
+      </p>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-card">
+        <div class="process-num">01</div>
+        <h3>Discovery</h3>
+        <p>We assess your current state, readiness, and highest-impact opportunities.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-num">02</div>
+        <h3>Analysis and Roadmap</h3>
+        <p>Insights are synthesized into a prioritized, business-aligned plan.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-num">03</div>
+        <h3>Strategic Alignment</h3>
+        <p>Leaders align on priorities, governance, metrics, and quick wins.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-num">04</div>
+        <h3>Analytics Accelerator</h3>
+        <p>We launch execution, stand up governance, and drive early results through high-impact use cases and a 180-day action plan.</p>
+      </div>
+
+    </div>
+
+    <div class="process-diagram">
+      <img src="https://storage.ning.com/topology/rest/1.0/file/get/31050141476?profile=original" alt="CULytics Consulting Process Diagram">
+    </div>
+
+  </div>
+</section>
+
+<!-- To add another customer later, add one more .customer-logo inside .customer-set. The script duplicates the set automatically. -->
+
+<!-- =========================
+OUR CUSTOMERS
+========================= -->
+
+<section class="customers-section">
+  <div class="container">
+
+    <div class="section-header">
+      <div class="section-eyebrow">Our Customers</div>
+      <h2>Trusted By Credit Unions</h2>
+    </div>
+
+    <div class="customer-slider" aria-label="Our Customers">
+      <div class="customer-track">
+        <div class="customer-set">
+        <div class="customer-logo" title="community resource">
+          <img src="https://storage.ning.com/topology/rest/1.0/file/get/8472923895?profile=RESIZE_400x" alt="Community Resource Credit Union">
+        </div>
+
+        <div class="customer-logo" title="Foothill">
+          <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255414457?profile=original" alt="Foothill Credit Union">
+        </div>
+
+        <div class="customer-logo" title="Valley Strong">
+          <img src="https://storage.ning.com/topology/rest/1.0/file/get/3938973939?profile=RESIZE_584x" alt="Valley Strong Credit Union">
+        </div>
+
+        <div class="customer-logo" title="Eastman">
+          <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255414276?profile=RESIZE_400x" alt="Eastman Credit Union">
+        </div>
+
+        <div class="customer-logo" title="Founders">
+          <img src="https://storage.ning.com/topology/rest/1.0/file/get/10167665900?profile=RESIZE_584x" alt="Founders Federal Credit Union">
+        </div>
+
+<div class="customer-logo" title="Harborstone CU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/7452495897?profile=RESIZE_584x"
+       alt="Harborstone CU">
+</div>
+<div class="customer-logo" title="MHVFCU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255413455?profile=RESIZE_400x"
+       alt="MHVFCU">
+</div>
+<div class="customer-logo" title="Launch CU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255413072?profile=RESIZE_710x"
+       alt="Launch CU">
+</div>
+<div class="customer-logo" title="Safe Federal CU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/10825653671?profile=RESIZE_400x"
+       alt="Safe Federal CU">
+</div>
+<div class="customer-logo" title="Travis CU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255413300?profile=RESIZE_400x"
+       alt="Travis CU">
+</div>
+<div class="customer-logo" title="WSECU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/10167666054?profile=RESIZE_584x"
+       alt="WSECU">
+</div>
+<div class="customer-logo" title="Trumark FCU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/10909557880?profile=RESIZE_400x"
+       alt="Trumark FCU">
+</div>
+<div class="customer-logo" title="Affinity Plus">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/31255413882?profile=RESIZE_400x"
+       alt="Affinity Plus">
+</div>
+<div class="customer-logo" title="Commonwealth CU">
+  <img src="https://storage.ning.com/topology/rest/1.0/file/get/8620218493?profile=RESIZE_710x"
+       alt="Commonwealth CU">
+</div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // The first customer-set is the source list. JavaScript duplicates it
+  // automatically to create the seamless revolving banner.
+  document.addEventListener('DOMContentLoaded', function () {
+    const track = document.querySelector('.customer-track');
+    const original = track ? track.querySelector('.customer-set') : null;
+    if (track && original) {
+      track.appendChild(original.cloneNode(true));
+    }
+  });
+</script>
+
+<!-- =========================
+CTA
+========================= -->
+
+<div class="consulting-cta">
+
+  <h2>
+    Are You Ready To Move The Needle?
+  </h2>
+
+  <p>
+    Connect with the CULytics Consulting team to talk through your data analytics strategy, governance, platform, or AI readiness needs.
+  </p>
+
+  <a href="mailto:consulting@culytics.com" class="cta-btn">
+    Contact Us At consulting@culytics.com
+  </a>
+
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<img src="https://storage.ning.com/topology/rest/1.0/file/get/3706036834?profile=RESIZE_1200x"
+alt="CULytics Logo"
+class="footer-site-logo">
+
+<p>
+A modern ecosystem helping credit unions navigate transformation through executive collaboration, industry insights, and strategic initiatives.
+</p>
+
+<div class="footer-socials">
+
+  <!-- X / Twitter -->
+
+  <a href="https://x.com/culytics" target="_blank" aria-label="CULytics on X">
+
+    <svg viewBox="0 0 24 24">
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.153h7.594l5.243 6.932 6.064-6.932zm-1.29 19.494h2.039L6.486 3.258H4.298l13.313 17.389z"/>
+    </svg>
+
+  </a>
+
+  <!-- LinkedIn -->
+
+  <a href="https://www.linkedin.com/company/culytics/" target="_blank" aria-label="CULytics on LinkedIn">
+
+    <svg viewBox="0 0 24 24">
+      <path d="M4.98 3.5C4.98 4.604 4.104 5.5 3 5.5S1.02 4.604 1.02 3.5 1.896 1.5 3 1.5s1.98.896 1.98 2zM1.5 8h3V22h-3V8zm7.5 0h2.877v1.917h.041c.401-.761 1.381-1.562 2.844-1.562 3.041 0 3.602 2.001 3.602 4.604V22h-3v-6.917c0-1.65-.029-3.771-2.297-3.771-2.299 0-2.651 1.796-2.651 3.651V22h-3V8z"/>
+    </svg>
+
+  </a>
+
+</div>
+
+</div>
+
+<div class="footer-column">
+          <h4>Connect With Us</h4>
+          <a href="https://culytics.com/about">About CULytics</a>
+          <a href="https://culytics.com/team">Team</a>
+          <a href="mailto:info@culytics.com?subject=Request to Join Mailing List&body=I would like to join the CULytics Mailing List. Please add me to the same.">Join Mailing List</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Offerings</h4>
+          <a href="https://culytics.com/consulting">CU Consulting</a>
+          <a href="https://insights.culytics.com/sp-advisory/">SP Consulting</a>
+          <a href="https://culytics.com/membership">CULytics Membership</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Community</h4>
+          <a href="https://events.culytics.com/events">Upcoming Events</a>
+          <a href="https://culytics.com/content-library">Content Library</a>
+          <a href="https://culytics.com/assessments">Self Assessments</a>
+        </div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 CULytics. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+
+  const nav = document.querySelector('nav');
+
+  if(window.scrollY > 30){
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+
+});
+</script>
+
+<script>
+
+/* MOBILE MENU */
+
+const mobileToggle =
+document.querySelector('.mobile-menu-toggle');
+
+const mobileMenu =
+document.querySelector('.mobile-menu');
+
+mobileToggle.addEventListener('click', () => {
+
+  mobileMenu.classList.toggle('active');
+
+});
+
+/* MOBILE SUBMENUS */
+
+document.querySelectorAll('.mobile-dropdown-toggle')
+.forEach(toggle => {
+
+  toggle.addEventListener('click', () => {
+
+    const submenu =
+    toggle.nextElementSibling;
+
+    const plus =
+    toggle.querySelector('span');
+
+    submenu.classList.toggle('active');
+
+    plus.innerHTML =
+    submenu.classList.contains('active')
+    ? '−'
+    : '+';
+
+  });
+
+});
+
+/* CLOSE MENU ON LINK CLICK */
+
+document.querySelectorAll('.mobile-menu a')
+.forEach(link => {
+
+  link.addEventListener('click', () => {
+
+    mobileMenu.classList.remove('active');
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
